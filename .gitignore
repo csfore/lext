@@ -10,3 +10,4 @@ vls.log
 
 *.bak
 test/
+backups/
