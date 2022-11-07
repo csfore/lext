@@ -1,3 +1,3 @@
-# SortX
+# lext
 
-To finish
+List file extension count
