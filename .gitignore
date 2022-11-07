@@ -1,0 +1,9 @@
+# Binaries for programs and plugins
+main
+ext_sorter
+*.exe
+*.exe~
+*.so
+*.dylib
+*.dll
+vls.log
