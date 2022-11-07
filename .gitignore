@@ -7,3 +7,5 @@ ext_sorter
 *.dylib
 *.dll
 vls.log
+
+test/
