@@ -1,4 +1,5 @@
 module main
+
 import os
 
 fn get_deep(path string, common_only bool) !map[string]int {
@@ -11,21 +12,20 @@ fn get_deep(path string, common_only bool) !map[string]int {
 			(*pext_map)['None'] += 1
 		} else {
 			if common_only {
-				if ext in common_ext{
+				if ext in common_ext {
 					(*pext_map)[ext] += 1
 				}
 			} else {
 				(*pext_map)[ext] += 1
 			}
 		}
-		
 	})
 	mut biggest := 0
-	for key,value in ext_map {
+	for key, value in ext_map {
 		if key.len > biggest {
 			biggest = key.len
 		}
-		println("${key:-30}${value:-10}")
+		println('${key:-30}${value:-10}')
 	}
 	return ext_map
 }

@@ -1,9 +1,10 @@
 module main
+
 import os
 
 fn get_shallow(path string, common_only bool) !map[string]int {
 	mut ext_map := map[string]int{}
-	
+
 	files := os.ls(path) or {
 		eprintln('An error occurred')
 		return error('Error')
@@ -33,7 +34,7 @@ fn get_shallow(path string, common_only bool) !map[string]int {
 
 	println('Results:')
 	for key, value in ext_map {
-		println('${key:-15}${value}')
+		println('${key:-15}$value')
 	}
 	return ext_map
 }

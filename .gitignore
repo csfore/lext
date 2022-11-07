@@ -8,4 +8,5 @@ ext_sorter
 *.dll
 vls.log
 
+*.bak
 test/
