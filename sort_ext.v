@@ -1,7 +1,7 @@
 module main
 
 struct Pair {
-	key string
+	key   string
 	value int
 }
 
@@ -10,7 +10,7 @@ fn sort_ext(ext_map map[string]int) map[string]int {
 
 	mut index := 0
 	for index <= ext_map.len {
-		for key,value in ext_map {
+		for key, value in ext_map {
 			if value != index {
 				continue
 			}
@@ -29,9 +29,9 @@ fn sort_ext(ext_map map[string]int) map[string]int {
 	return sorted_map
 }
 
-fn print_sorted(ext_map map[string] int) {
+fn print_sorted(ext_map map[string]int) {
 	sorted := sort_ext(ext_map)
-	for key,value in sorted {
+	for key, value in sorted {
 		println('${key:-15}$value')
 	}
 }
