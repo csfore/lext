@@ -11,3 +11,4 @@ vls.log
 *.bak
 test/
 backups/
+lext.out
