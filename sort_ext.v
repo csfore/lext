@@ -1,11 +1,8 @@
 module main
 
-struct Pair {
-	key   string
-	value int
-}
-
+// sort_ext Sorts an extension map and returns the sorted map of it
 fn sort_ext(ext_map map[string]int) map[string]int {
+	// I know this isn't efficient but speed shouldn't be an issue for a while
 	mut sorted_map := map[string]int{}
 
 	mut index := 0
@@ -18,17 +15,10 @@ fn sort_ext(ext_map map[string]int) map[string]int {
 		}
 		index++
 	}
-	// for key,value in ext_map {
-	// 	if value > biggest {
-	// 		biggest = value
-	// 		sorted_map[key] = value
-	// 	} else if value == biggest {
-	// 		sorted_map[key] = value
-	// 	}
-	// }
 	return sorted_map
 }
 
+// print_sorted Prints the sorted extension map
 fn print_sorted(ext_map map[string]int) {
 	sorted := sort_ext(ext_map)
 	for key, value in sorted {

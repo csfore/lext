@@ -3,6 +3,7 @@ module main
 import os
 import flag
 
+// main Entry point
 fn main() {
 	mut fp := flag.new_flag_parser(os.args)
 	fp.application('lext')
@@ -46,6 +47,7 @@ fn main() {
 	return
 }
 
+// write_output Writes the output to a file
 fn write_output(path string, ext_map map[string]int) ! {
 	if os.exists(path) {
 		os.rm(path)!

@@ -2,6 +2,7 @@ module main
 
 import os
 
+// get_shallow Searches shallowly, not going into subdirectories
 fn get_shallow(path string, common_only bool) !map[string]int {
 	mut ext_map := map[string]int{}
 
@@ -32,9 +33,5 @@ fn get_shallow(path string, common_only bool) !map[string]int {
 		}
 	}
 
-	// println('Results:')
-	// for key, value in ext_map {
-	// 	println('${key:-15}$value')
-	// }
 	return ext_map
 }

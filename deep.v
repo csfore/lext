@@ -2,6 +2,7 @@ module main
 
 import os
 
+// get_deep Searches deep, recursively searching
 fn get_deep(path string, common_only bool) !map[string]int {
 	mut ext_map := map[string]int{}
 	mut pext_map := &ext_map
