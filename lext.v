@@ -35,7 +35,11 @@ fn main() {
 	println('Results:')
 	match sorted {
 		true {
-			print_sorted(ext_map)
+			sort := sort_ext(ext_map)
+			for element in sort {
+				println('${element.name:-15}${element.count}')
+			}
+			println('Sorted through ${sort.len} elements')
 		}
 		false {
 			for key, value in ext_map {

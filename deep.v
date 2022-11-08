@@ -21,6 +21,10 @@ fn get_deep(path string, common_only bool) !map[string]int {
 			}
 		}
 	})
+	return ext_map
+}
+
+/*
 	mut biggest := 0
 	for key, value in ext_map {
 		if key.len > biggest {
@@ -28,5 +32,4 @@ fn get_deep(path string, common_only bool) !map[string]int {
 		}
 		println('${key:-30}${value:-10}')
 	}
-	return ext_map
-}
+*/
