@@ -12,6 +12,7 @@ fn main() {
 	fp.skip_executable()
 	recursive := fp.bool('recursive', `r`, false, 'Recursive search')
 	common := fp.bool('common', `c`, false, 'Search only for common extensions')
+	sorted := fp.bool('sorted', `s`, false, 'Sort the values (low => high)')
 	output := fp.string('output', `o`, '', 'Output text to a file')
 	path := fp.string('path', `p`, '~', 'Path')
 
@@ -28,6 +29,18 @@ fn main() {
 	}
 	if output != '' {
 		write_output(output, ext_map)!
+	}
+
+	println('Results:')
+	match sorted {
+		true {
+			print_sorted(ext_map)
+		}
+		false {
+			for key, value in ext_map {
+				println('${key:-15}$value')
+			}
+		}
 	}
 
 	return

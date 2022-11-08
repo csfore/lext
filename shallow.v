@@ -32,9 +32,9 @@ fn get_shallow(path string, common_only bool) !map[string]int {
 		}
 	}
 
-	println('Results:')
-	for key, value in ext_map {
-		println('${key:-15}$value')
-	}
+	// println('Results:')
+	// for key, value in ext_map {
+	// 	println('${key:-15}$value')
+	// }
 	return ext_map
 }
