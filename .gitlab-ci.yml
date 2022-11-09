@@ -1,20 +1,21 @@
 default:
   image: ubuntu:22.04
+  before_script:
+    - git clone https://github.com/vlang/v
+    - cd v
+    - make && ./v symlink
 
 stages:
   - test
   - build
-  - deploy
+  - deploy  
 
 format:
   stage: test
   script:
-    - git clone https://github.com/vlang/v
-    - cd v
-    - make
     - mkdir -p build
-    - ./v fmt . -w
-    - ./v test .
+    - v fmt . -w
+    - v test .
 
 compile:
   stage: build
