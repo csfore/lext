@@ -5,7 +5,8 @@ default:
     - apt-get install --quiet -y git make
     - git clone https://github.com/vlang/v
     - cd v
-    - make && ./v symlink
+    - make
+    - ./v symlink
 
 stages:
   - test
@@ -15,16 +16,12 @@ stages:
 format:
   stage: test
   script:
-    - mkdir -p build
     - v fmt . -w
     - v test .
 
 compile:
   stage: build
   script:
-    - git clone https://github.com/vlang/v
-    - cd v
-    - make && ./v symlink
     - mkdir -p build
     - v . -o ./build/lext.exe
   artifacts:
