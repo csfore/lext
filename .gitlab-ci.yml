@@ -2,7 +2,7 @@ default:
   image: ubuntu:22.04
   before_script:
     - apt-get update
-    - apt-get install --quiet -y git
+    - apt-get install --quiet -y git make
     - git clone https://github.com/vlang/v
     - cd v
     - make && ./v symlink
