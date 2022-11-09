@@ -46,9 +46,9 @@ fn main() {
 			println('Extension${' '.repeat(longest - 4)}#')
 			println('${'-'.repeat(longest + 7)}')
 			for element in sort {
-				println('${element.name}${' '.repeat(longest - element.name.len + 5)}${element.count}')
+				println('$element.name${' '.repeat(longest - element.name.len + 5)}$element.count')
 			}
-			println('Sorted through ${sort.len} elements')
+			println('Sorted through $sort.len elements')
 		}
 		false {
 			mut longest := 0
@@ -59,7 +59,7 @@ fn main() {
 			}
 			println('Extension${' '.repeat(longest - 4)}#')
 			for key, value in ext_map {
-				println('${key}${' '.repeat(longest - key.len + 5)}${value}')
+				println('$key${' '.repeat(longest - key.len + 5)}$value')
 			}
 		}
 	}
@@ -67,7 +67,8 @@ fn main() {
 	return
 }
 
-/* Table code for later
+/*
+Table code for later
 println('${'_'.repeat(longest + 10)}')
 println('| Extension${' '.repeat(longest - 4)}# |')
 println('|${'-'.repeat(longest + 8)}|')

@@ -1,7 +1,7 @@
 module main
 
 struct Ext {
-	name string
+	name  string
 	count int
 }
 
@@ -9,7 +9,7 @@ struct Ext {
 fn sort_ext(ext_map map[string]int) []Ext {
 	mut ext_arr := []Ext{}
 
-	for key,value in ext_map {
+	for key, value in ext_map {
 		ext_arr << Ext{
 			name: key
 			count: value
@@ -24,14 +24,14 @@ fn quicksort(mut alist []Ext, first int, last int) {
 		splitpoint := partition(mut alist, first, last)
 
 		quicksort(mut alist, first, splitpoint - 1)
-		quicksort(mut alist, splitpoint+1, last)
+		quicksort(mut alist, splitpoint + 1, last)
 	}
 }
 
 fn partition(mut alist []Ext, first int, last int) int {
 	pivotvalue := alist[first].count
 
-	mut leftmark := first+1
+	mut leftmark := first + 1
 	mut rightmark := last
 
 	mut done := false
@@ -49,7 +49,7 @@ fn partition(mut alist []Ext, first int, last int) int {
 			done = true
 		} else {
 			mut temp := alist[leftmark]
-			alist[leftmark]= alist[rightmark]
+			alist[leftmark] = alist[rightmark]
 			alist[rightmark] = temp
 		}
 	}
@@ -57,6 +57,6 @@ fn partition(mut alist []Ext, first int, last int) int {
 	temp := alist[first]
 	alist[first] = alist[rightmark]
 	alist[rightmark] = temp
-	
+
 	return rightmark
 }

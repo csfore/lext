@@ -25,7 +25,7 @@ fn get_deep(path string, common_only bool) !map[string]int {
 }
 
 /*
-	mut biggest := 0
+mut biggest := 0
 	for key, value in ext_map {
 		if key.len > biggest {
 			biggest = key.len
