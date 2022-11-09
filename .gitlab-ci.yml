@@ -8,10 +8,10 @@ format:
   script:
     - git clone https://github.com/vlang/v
     - cd v
-    - make && ./v symlink
+    - make
     - mkdir -p build
-    - v fmt . -w
-    - v test .
+    - ./v fmt . -w
+    - ./v test .
 
 compile:
   stage: build
