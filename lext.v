@@ -32,18 +32,37 @@ fn main() {
 		write_output(output, ext_map)!
 	}
 
-	println('Results:')
+	// println('Results:')
 	match sorted {
 		true {
 			sort := sort_ext(ext_map)
+			mut longest := 0
 			for element in sort {
-				println('${element.name:-15}${element.count}')
+				if element.name.len > longest {
+					longest = element.name.len
+				}
+			}
+			println('${'-'.repeat(longest + 7)}')
+			println('.extension${' '.repeat(longest - 4)}#')
+			println('${'-'.repeat(longest + 7)}')
+			for element in sort {
+				println('${element.name}${' '.repeat(longest - element.name.len + 5)}${element.count}')
 			}
 			println('Sorted through ${sort.len} elements')
 		}
 		false {
+			mut longest := 0
+			for key, _ in ext_map {
+				if key.len > longest {
+					longest = key.len
+				}
+			}
+			println('${'-'.repeat(longest + 6)}')
+			println('.extension${' '.repeat(longest - 5)}#')
+			println('${'-'.repeat(longest + 6)}')
 			for key, value in ext_map {
-				println('${key:-15}$value')
+				// println('${key:-15}$value')
+				println('${key}${' '.repeat(longest - key.len + 5)}${value}')
 			}
 		}
 	}

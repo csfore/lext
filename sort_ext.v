@@ -7,10 +7,7 @@ struct Ext {
 
 // sort_ext Sorts an extension map and returns the sorted map of it
 fn sort_ext(ext_map map[string]int) []Ext {
-	// I know this isn't efficient but speed shouldn't be an issue for a while
-	mut sorted_map := map[string]int{}
-
-	mut ext_arr := []Ext
+	mut ext_arr := []Ext{}
 
 	for key,value in ext_map {
 		ext_arr << Ext{
