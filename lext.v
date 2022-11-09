@@ -15,7 +15,7 @@ fn main() {
 	common := fp.bool('common', `c`, false, 'Search only for common extensions')
 	sorted := fp.bool('sorted', `s`, false, 'Sort the values (low => high)')
 	output := fp.string('output', `o`, '', 'Output text to a file')
-	path := fp.string('path', `p`, '~', 'Path')
+	path := fp.string('path', `p`, '.', 'Path')
 
 	fp.finalize() or {
 		eprintln(err)
@@ -43,7 +43,7 @@ fn main() {
 				}
 			}
 			println('${'-'.repeat(longest + 7)}')
-			println('.extension${' '.repeat(longest - 4)}#')
+			println('Extension${' '.repeat(longest - 4)}#')
 			println('${'-'.repeat(longest + 7)}')
 			for element in sort {
 				println('${element.name}${' '.repeat(longest - element.name.len + 5)}${element.count}')
@@ -57,11 +57,8 @@ fn main() {
 					longest = key.len
 				}
 			}
-			println('${'-'.repeat(longest + 6)}')
-			println('.extension${' '.repeat(longest - 5)}#')
-			println('${'-'.repeat(longest + 6)}')
+			println('Extension${' '.repeat(longest - 4)}#')
 			for key, value in ext_map {
-				// println('${key:-15}$value')
 				println('${key}${' '.repeat(longest - key.len + 5)}${value}')
 			}
 		}
@@ -69,6 +66,17 @@ fn main() {
 
 	return
 }
+
+/* Table code for later
+println('${'_'.repeat(longest + 10)}')
+println('| Extension${' '.repeat(longest - 4)}# |')
+println('|${'-'.repeat(longest + 8)}|')
+for key, value in ext_map {
+	// println('${key:-15}$value')
+	println('| ${key}${' '.repeat(longest - key.len + 5)}${value} |')
+}
+println('${'-'.repeat(longest + 10)}')
+*/
 
 // write_output Writes the output to a file
 fn write_output(path string, ext_map map[string]int) ! {

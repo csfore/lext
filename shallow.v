@@ -13,7 +13,7 @@ fn get_shallow(path string, common_only bool) !map[string]int {
 	for file in files {
 		// println(file)
 		if os.is_dir('$path/$file') {
-			ext_map['dir'] += 1
+			ext_map['directory/'] += 1
 			continue
 		}
 		ext := os.file_ext('$path/$file')
