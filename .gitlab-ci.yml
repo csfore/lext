@@ -6,14 +6,21 @@ stages:
 format:
   stage: test
   script:
-    - v fmt .
+    - git clone https://github.com/vlang/v
+    - cd v
+    - make && ./v symlink
+    - mkdir -p build
+    - v fmt . -w
     - v test .
 
 compile:
   stage: build
   script:
+    - git clone https://github.com/vlang/v
+    - cd v
+    - make && ./v symlink
     - mkdir -p build
-    - v . -o .\build\lext.exe
+    - v . -o ./build/lext.exe
   artifacts:
     paths:
       - build
