@@ -8,20 +8,26 @@ fn main() {
 	mut fp := flag.new_flag_parser(os.args)
 	fp.application('lext')
 	fp.version('v0.1.0')
+	fp.usage_examples = ['[options] [ARGS]', '[path]']
 	// fp.limit_free_args(0, 0)! // comment this, if you expect arbitrary texts after the options
-	fp.description('This program is used to show file extension count')
+	fp.description('Show many files have an extension, option to sort and recursively search')
 	fp.skip_executable()
 	recursive := fp.bool('recursive', `r`, false, 'Recursive search')
 	common := fp.bool('common', `c`, false, 'Search only for common extensions')
 	sorted := fp.bool('sorted', `s`, false, 'Sort the values (low => high)')
 	output := fp.string('output', `o`, '', 'Output text to a file')
-	path := fp.string('path', `p`, '.', 'Path')
+	mut path := fp.string('path', `p`, '.', 'Path to search for extensions (defaults to `.`)')
 
 	fp.finalize() or {
-		eprintln(err)
-		println(fp.usage())
-		return
+        eprintln(err)
+        println(fp.usage())
+        return
+    }
+	
+	if os.is_dir(os.args[1]) {
+		path = os.args[1]
 	}
+
 	mut ext_map := map[string]int{}
 	if recursive {
 		ext_map = get_deep(path, common)!
@@ -63,7 +69,7 @@ fn main() {
 			}
 		}
 	}
-
+	// println(path)
 	return
 }
 
