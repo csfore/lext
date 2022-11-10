@@ -12,3 +12,5 @@ vls.log
 test/
 backups/
 lext.out
+
+.gitlab-ci.yml
