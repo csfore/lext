@@ -24,7 +24,7 @@ fn main() {
         return
     }
 	
-	if os.is_dir(os.args[1]) {
+	if os.args.len > 1 && os.is_dir(os.args[1]) {
 		path = os.args[1]
 	}
 
