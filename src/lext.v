@@ -131,9 +131,3 @@ fn get_longest(ext_arr []Ext) int {
 
 	return longest
 }
-
-fn bad() {
-	bad := 1
-	more := 0
-	formatting := 'a'
-}
