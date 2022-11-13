@@ -2,17 +2,10 @@ module main
 
 import os
 import flag
-// test
-// main Entry point
 
 struct Ext {
 	name string
 mut:
-	count int
-}
-
-struct Test {
-	name  string
 	count int
 }
 
@@ -83,15 +76,7 @@ fn main() {
 	}
 
 	print_results(ext_arr)
-	// mut test := []Test{}
 
-	// for key, value in ext_map {
-	// 	test << Test{
-	// 		name: key
-	// 		count: value
-	// 	}
-	// }
-	// println(test)
 	return
 }
 
@@ -111,12 +96,11 @@ fn parse_settings(recursive bool, common bool, sorted bool, tab bool) int {
 	}
 
 	mut set_val := 0
-	// println(settings)
+
 	for key, value in options {
 		if value == true {
 			set_val |= settings[key]
 		}
-		// set_val |= value
 	}
 	return set_val
 }
