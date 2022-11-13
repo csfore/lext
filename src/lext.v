@@ -44,6 +44,12 @@ fn main() {
 		path = os.args[1]
 	}
 
+	lext(recursive, common, sorted, output, path, max, tab)!
+
+	return
+}
+
+fn lext(recursive bool, common bool, sorted bool, output string, path string, max int, tab bool) ! {
 	mut settings := parse_settings(recursive, common, sorted, tab)
 
 	mut ext_arr := []Ext{}
@@ -76,8 +82,6 @@ fn main() {
 	}
 
 	print_results(ext_arr)
-
-	return
 }
 
 fn parse_settings(recursive bool, common bool, sorted bool, tab bool) int {
@@ -103,15 +107,4 @@ fn parse_settings(recursive bool, common bool, sorted bool, tab bool) int {
 		}
 	}
 	return set_val
-}
-
-fn get_longest(ext_arr []Ext) int {
-	mut longest := 0
-	for entry in ext_arr {
-		if entry.name.len > longest {
-			longest = entry.name.len
-		}
-	}
-
-	return longest
 }
