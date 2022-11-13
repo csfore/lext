@@ -3,7 +3,7 @@ module main
 import os
 
 // get_deep Searches deep, recursively searching
-fn get_deep(path string, settings int, max int) !map[string]int {
+fn get_deep(path string, settings int, max int) ![]Ext {
 	mut ext_map := map[string]int{}
 	mut pext_map := &ext_map
 
@@ -33,7 +33,17 @@ fn get_deep(path string, settings int, max int) !map[string]int {
 		// Base case
 		(*pext_map)[ext] += 1
 	})
-	return ext_map
+
+	mut ext_arr := []Ext{}
+
+	for key, value in ext_map {
+		ext_arr << Ext{
+			name: key
+			count: value
+		}
+	}
+
+	return ext_arr
 }
 
 /*

@@ -3,8 +3,9 @@ module main
 import os
 
 // get_shallow Searches shallowly, not going into subdirectories
-fn get_shallow(path string, settings int, max int) !map[string]int {
+fn get_shallow(path string, settings int, max int) ![]Ext {
 	mut ext_map := map[string]int{}
+	mut ext_arr := []Ext{}
 
 	files := os.ls(path) or {
 		eprintln('An error occurred')
@@ -44,5 +45,12 @@ fn get_shallow(path string, settings int, max int) !map[string]int {
 		ext_map[ext] += 1
 	}
 
-	return ext_map
+	for key, value in ext_map {
+		ext_arr << Ext{
+			name: key
+			count: value
+		}
+	}
+
+	return ext_arr
 }

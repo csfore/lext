@@ -4,6 +4,25 @@ import os
 import flag
 // test
 // main Entry point
+
+struct Ext {
+	name  string
+mut:
+	count int
+}
+
+struct Test {
+	name string
+	count int
+}
+
+const (
+	recursive_bit = 0x1
+	common_bit = 0x2
+	sorted_bit = 0x4
+	tabd_bit = 0x8
+)
+
 fn main() {
 	mut fp := flag.new_flag_parser(os.args)
 	fp.application('lext')
@@ -25,44 +44,63 @@ fn main() {
         println(fp.usage())
         return
     }
-	// println(max)
+	
+	// Allowing usage of `lext /path/to/search` rather than explicitly needing
+	// to use the `-p` flag
 	if os.args.len > 1 && os.is_dir(os.args[1]) {
 		path = os.args[1]
 	}
 
 	mut settings := parse_settings(recursive, common, sorted, tab)
 
-	mut ext_map := map[string]int{}
-	if recursive {
-		ext_map = get_deep(path, settings, max)!
+	mut ext_arr := []Ext{}
+
+	// Checking if the recursive bit is on
+	if (settings & recursive_bit) == 1 {
+		ext_arr = get_deep(path, settings, max)!
 	} else {
-		ext_map = get_shallow(path, settings, max)!
-	}
-	if output != '' {
-		write_output(output, ext_map)!
+		ext_arr = get_shallow(path, settings, max)!
 	}
 
-	if sorted {
-		print_sorted(ext_map)
+	// Checking if the output length is more than 0,
+	// If it is then it'll attempt the write_output function
+	if output.len > 0 {
+		write_output(output, ext_arr)!
 	}
-	print_results(ext_map)
-	
-	// println(settings)
-	// sets := [0x8, 0x4, 0x2, 0x1]
-	// for val in sets {
-	// 	println('Settings: $settings')
-	// 	settings -= val
+
+	// Checking if the sorted bit is on
+	if (settings & sorted_bit) == 4 {
+		results := print_sorted(mut ext_arr).join('\n')
+		println(results)
+		
+		println('Sorted through $results.len elements')
+		return
+	}
+
+	if (settings & tabd_bit) == 8 {
+		print_tabulated(ext_arr)
+		return
+	}
+
+	print_results(ext_arr)
+	// mut test := []Test{}
+
+	// for key, value in ext_map {
+	// 	test << Test{
+	// 		name: key
+	// 		count: value
+	// 	}
 	// }
-	// println(path)
+	// println(test)
 	return
 }
 
 fn parse_settings(recursive bool, common bool, sorted bool, tab bool) int {
 	settings := {
-		'recursive': 0x1
-		'common': 0x2
-		'sorted': 0x4
-		'tabd': 0x8
+		'recursive': recursive_bit
+		'common': common_bit
+		'sorted': sorted_bit
+		'tabd': tabd_bit
 	}
 
 	options := {
@@ -83,26 +121,14 @@ fn parse_settings(recursive bool, common bool, sorted bool, tab bool) int {
 	return set_val
 }
 
-/*
-Table code for later
-println('${'_'.repeat(longest + 10)}')
-println('| Extension${' '.repeat(longest - 4)}# |')
-println('|${'-'.repeat(longest + 8)}|')
-for key, value in ext_map {
-	// println('${key:-15}$value')
-	println('| ${key}${' '.repeat(longest - key.len + 5)}${value} |')
-}
-println('${'-'.repeat(longest + 10)}')
-*/
 
-// write_output Writes the output to a file
-fn write_output(path string, ext_map map[string]int) ! {
-	if os.exists(path) {
-		os.rm(path)!
+fn get_longest(ext_arr []Ext) int {
+	mut longest := 0
+	for entry in ext_arr {
+		if entry.name.len > longest {
+			longest = entry.name.len
+		}
 	}
-	mut out_file := os.open_append(path)!
-	for key, value in ext_map {
-		out_string := '${key:-15}$value\n'
-		out_file.write_string(out_string)!
-	}
+
+	return longest
 }
