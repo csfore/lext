@@ -2,7 +2,7 @@ module main
 
 fn test_get_deep() {
 	mut sum := 0
-	deep := get_deep('test/', false, 0)?
+	deep := get_deep('test/', 0x0, 0)?
 
 	for _,value in deep {
 		sum += value
@@ -14,7 +14,7 @@ fn test_get_deep() {
 
 fn test_get_deep_common() {
 	mut sum := 0
-	deep := get_deep('test/', true, 0)?
+	deep := get_deep('test/', 0x2, 0)?
 	println(deep)
 
 	for _,value in deep {
