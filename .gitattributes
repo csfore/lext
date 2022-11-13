@@ -1,4 +1,4 @@
-*.v linguist-language=V text=auto eol=lf
+*.v linguist-language=V text=auto eol=lf filter=fmt
 *.vv linguist-language=V text=auto eol=lf
 *.vsh linguist-language=V text=auto eol=lf
 **/v.mod linguist-language=V text=auto eol=lf
