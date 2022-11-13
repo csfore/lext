@@ -2,14 +2,6 @@ module main
 
 // sort_ext Sorts an extension map and returns the sorted map of it
 fn sort_ext(mut ext_arr []Ext) []Ext {
-	// mut ext_arr := []Ext{}
-
-	// for key, value in ext_map {
-	// 	ext_arr << Ext{
-	// 		name: key
-	// 		count: value
-	// 	}
-	// }
 	quicksort(mut ext_arr, 0, ext_arr.len - 1)
 	return ext_arr
 }

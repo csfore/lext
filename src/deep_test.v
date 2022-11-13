@@ -4,7 +4,7 @@ fn test_get_deep() {
 	mut sum := 0
 	deep := get_deep('test/', 0x0, 0)?
 
-	for _,value in deep {
+	for _, value in deep {
 		sum += value
 	}
 
@@ -17,7 +17,7 @@ fn test_get_deep_common() {
 	deep := get_deep('test/', 0x2, 0)?
 	println(deep)
 
-	for _,value in deep {
+	for _, value in deep {
 		sum += value
 	}
 

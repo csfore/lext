@@ -13,7 +13,7 @@ fn get_shallow(path string, settings int, max int) ![]Ext {
 	}
 	for file in files {
 		mut ext := os.file_ext('$path/$file')
-		
+
 		// Checking if it's a directory
 		if os.is_dir('$path/$file') {
 			ext_map['dir/'] += 1

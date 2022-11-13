@@ -9,7 +9,7 @@ fn get_deep(path string, settings int, max int) ![]Ext {
 
 	os.walk(path, fn [mut pext_map, settings, max] (file string) {
 		mut ext := os.file_ext(file)
-		
+
 		// Checking for a max string value
 		if max > 0 && ext.len > max {
 			ext = ext[0..max + 1] + '#'
@@ -19,7 +19,7 @@ fn get_deep(path string, settings int, max int) ![]Ext {
 		if ext.len == 0 {
 			(*pext_map)['None'] += 1
 			return
-		} 
+		}
 
 		// Making sure the common bit is set to 2
 		if (settings & 0x2) == 2 {

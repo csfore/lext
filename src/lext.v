@@ -6,21 +6,21 @@ import flag
 // main Entry point
 
 struct Ext {
-	name  string
+	name string
 mut:
 	count int
 }
 
 struct Test {
-	name string
+	name  string
 	count int
 }
 
 const (
 	recursive_bit = 0x1
-	common_bit = 0x2
-	sorted_bit = 0x4
-	tabd_bit = 0x8
+	common_bit    = 0x2
+	sorted_bit    = 0x4
+	tabd_bit      = 0x8
 )
 
 fn main() {
@@ -40,11 +40,11 @@ fn main() {
 	tab := fp.bool('tabulated', `t`, false, 'Prints it in tabulated format (Not recommended for large datasets)')
 
 	fp.finalize() or {
-        eprintln(err)
-        println(fp.usage())
-        return
-    }
-	
+		eprintln(err)
+		println(fp.usage())
+		return
+	}
+
 	// Allowing usage of `lext /path/to/search` rather than explicitly needing
 	// to use the `-p` flag
 	if os.args.len > 1 && os.is_dir(os.args[1]) {
@@ -72,7 +72,7 @@ fn main() {
 	if (settings & sorted_bit) == 4 {
 		results := print_sorted(mut ext_arr).join('\n')
 		println(results)
-		
+
 		println('Sorted through $results.len elements')
 		return
 	}
@@ -98,21 +98,21 @@ fn main() {
 fn parse_settings(recursive bool, common bool, sorted bool, tab bool) int {
 	settings := {
 		'recursive': recursive_bit
-		'common': common_bit
-		'sorted': sorted_bit
-		'tabd': tabd_bit
+		'common':    common_bit
+		'sorted':    sorted_bit
+		'tabd':      tabd_bit
 	}
 
 	options := {
 		'recursive': recursive
-		'common': common
-		'sorted': sorted
-		'tabd': tab
+		'common':    common
+		'sorted':    sorted
+		'tabd':      tab
 	}
 
 	mut set_val := 0
 	// println(settings)
-	for key,value in options {
+	for key, value in options {
 		if value == true {
 			set_val |= settings[key]
 		}
@@ -120,7 +120,6 @@ fn parse_settings(recursive bool, common bool, sorted bool, tab bool) int {
 	}
 	return set_val
 }
-
 
 fn get_longest(ext_arr []Ext) int {
 	mut longest := 0

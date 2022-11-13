@@ -1,11 +1,12 @@
 module main
+
 import os
 
 fn print_sorted(mut ext_arr []Ext) []string {
 	mut sorted := []string{}
 	sort := sort_ext(mut ext_arr)
 	longest := get_longest(ext_arr)
-	
+
 	println('${'-'.repeat(longest + 7)}')
 	println('Ext.${' '.repeat(longest + 1)}#')
 	println('${'-'.repeat(longest + 7)}')
@@ -17,13 +18,13 @@ fn print_sorted(mut ext_arr []Ext) []string {
 
 fn print_tabulated(ext_arr []Ext) {
 	longest := get_longest(ext_arr)
-	
+
 	println('${'_'.repeat(longest + 10)}')
 	println('| Extension${' '.repeat(longest - 4)}# |')
 	println('|${'-'.repeat(longest + 8)}|')
 	for entry in ext_arr {
 		// println('${key:-15}$value')
-		println('| ${entry.name}${' '.repeat(longest - entry.name.len + 5)}${entry.count} |')
+		println('| $entry.name${' '.repeat(longest - entry.name.len + 5)}$entry.count |')
 	}
 	println('${'-'.repeat(longest + 10)}')
 }
